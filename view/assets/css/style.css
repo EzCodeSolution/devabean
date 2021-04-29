@@ -6883,6 +6883,26 @@ h3.cart-page-title {
   color: #ffffff;
 }
 
+.btn--red {
+  background: #eb0000;
+  color: #ffffff;
+}
+
+.btn--red:hover, .btn--red:focus {
+  background: rgb(255, 69, 69);
+  color: #ffffff;
+}
+
+.btn--blue {
+  background: #003af8;
+  color: #ffffff;
+}
+
+.btn--blue:hover, .btn--blue:focus {
+  background: rgb(73, 116, 233);
+  color: #ffffff;
+}
+
 .btn--border_1 {
   border: 1px solid #222;
 }
