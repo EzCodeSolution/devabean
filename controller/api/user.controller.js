@@ -23,8 +23,28 @@ const getProfile = (req,res) => {
 
 const postUpdateProfile = (req,res) =>{
     const data = req.body;
+    var updateData = {
+        Address: JSON.stringify(data.Address),
+        DisplayName: data.DisplayName,
+        Tel: data.Tel,
+        Line: data.Line,
+        FirstName: data.FirstName,
+        LastName: data.LastName
+    }
     console.log(data)
-    
+    try{
+        models.Account.update(updateData,{where : {id:req.userData.userId}}).then(async rs => {
+            const user = await models.Account.findByPk(req.userData.userId)
+            res.status(201).json({data:user,success:true,message:"อัพเดทสำเร็จ"})
+        }).catch(e => {
+            console.log(e)
+            res.status(200).json({success:false,message:"มีบางอย่างผิดพลาด กรุณาลองใหม่"})
+        })
+    }catch(e){
+        console.log(e)
+        res.status(500).json({success:false,message:"มีบางอย่างผิดพลาด กรุณาลองใหม่"})
+    }
+
 }
 
 module.exports = {
