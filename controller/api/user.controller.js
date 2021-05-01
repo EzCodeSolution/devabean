@@ -1,6 +1,7 @@
 const models = require('../../models')
 const jwt = require('jsonwebtoken')
 const helper = require('../../helper/savelog')
+const bcryptjs = require('bcryptjs')
 
 const getProfile = (req,res) => {   
     models.Account.findByPk(req.userData.userId).then(rs => {
@@ -14,7 +15,6 @@ const getProfile = (req,res) => {
             Line : rs.Line,
             DataJson : rs.DataJson
         }
-        helper.savelog(req.userData.userId,"11")
         res.status(200).json(profile)
     }).catch(e => {
         res.status(404)
@@ -31,10 +31,10 @@ const postUpdateProfile = (req,res) =>{
         FirstName: data.FirstName,
         LastName: data.LastName
     }
-    console.log(data)
     try{
         models.Account.update(updateData,{where : {id:req.userData.userId}}).then(async rs => {
             const user = await models.Account.findByPk(req.userData.userId)
+            helper.savelog(req.userData.userId,"12")
             res.status(201).json({data:user,success:true,message:"อัพเดทสำเร็จ"})
         }).catch(e => {
             console.log(e)
@@ -47,7 +47,30 @@ const postUpdateProfile = (req,res) =>{
 
 }
 
+const postUpdatePassword =  async (req,res) =>{
+    const data = req.body;
+    var user = await models.Account.findByPk(req.userData.userId);
+    bcryptjs.compare(data.oldpassword,user.Password, function(err, result){
+        if(result){
+            if(data.password != data.comfirmpassword){
+                return res.status(200).json({message:"รหัสผ่านใหม่ไม่ตรงกัน",error:err,success:false})
+            }else{
+                var newPassword = {
+                    Password:data.password
+                }
+                models.Account.update(newPassword,{where:{id:req.userData.userId}}).then(rs => {
+                    helper.savelog(req.userData.userId,"13")
+                    res.status(200).json({message:"เปลี่ยนรหัสผ่านสำเร็จ",success:true})
+                })
+            }
+        }else{
+            res.status(200).json({message:"รหัสผ่านเก่าผิด",error:err,success:false})
+        }
+    });
+}
+
 module.exports = {
     getProfile : getProfile,
-    postUpdateProfile : postUpdateProfile
+    postUpdateProfile : postUpdateProfile,
+    postUpdatePassword : postUpdatePassword
 }

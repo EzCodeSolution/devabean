@@ -13,5 +13,6 @@ route.post('/auth/login', authController.postLogin);
 
 route.get('/user/profile', checkAuth.checkAuth, userController.getProfile);
 route.post('/user/profile', checkAuth.checkAuth, userController.postUpdateProfile);
+route.post('/user/updatepassword', checkAuth.checkAuth, userController.postUpdatePassword)
 
 module.exports = route;

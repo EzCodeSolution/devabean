@@ -10,6 +10,8 @@
     "8":"UploadBill",
     "9":"Logout",
     "10":"Register",
-    "11":"GetProfile"
+    "11":"GetProfile",
+    "12":"UpdateProfile",
+    "13":"UpdatePassword"
     }
 }
