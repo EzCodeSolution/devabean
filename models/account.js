@@ -25,10 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     Tel: DataTypes.STRING,
     Line: DataTypes.STRING,
     IsActive: DataTypes.BOOLEAN,
-    Atype: DataTypes.NUMBER,
+    Atype: DataTypes.INTEGER,
     GoogleAuth: DataTypes.STRING,
-    FacebookAuth: DataTypes.STRING,
-    LastLogin: DataTypes.DATE
+    FacebookAuth: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Account',

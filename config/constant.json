@@ -1,0 +1,14 @@
+{"ActivityLog" : {
+    "0":"Login",
+    "1":"Register",
+    "2":"OpenProduct",
+    "3":"OpenBlog",
+    "4":"WishList",
+    "5":"AddToCart",
+    "6":"Order",
+    "7":"CancleOrder",
+    "8":"UploadBill",
+    "9":"Logout",
+    "10":"Register"
+    }
+}

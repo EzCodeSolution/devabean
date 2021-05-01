@@ -42,7 +42,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       Atype: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       GoogleAuth: {
         type: Sequelize.STRING
