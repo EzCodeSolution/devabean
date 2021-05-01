@@ -9,6 +9,7 @@ const app = express();
 const web = require('./routes/web/index')
 const user = require('./routes/api/user.route')
 
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -18,6 +19,7 @@ app.set('views',path.join(__dirname, '/view/'))
 app.set('view engine', 'ejs')
 
 //api 
+
 app.use('/api/',user)
 
 //send route

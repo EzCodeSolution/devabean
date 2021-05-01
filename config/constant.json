@@ -9,6 +9,7 @@
     "7":"CancleOrder",
     "8":"UploadBill",
     "9":"Logout",
-    "10":"Register"
+    "10":"Register",
+    "11":"GetProfile"
     }
 }

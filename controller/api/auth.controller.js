@@ -86,6 +86,10 @@ const postLogin = (req,res) => {
     });
 }
 
+const postLogout = (req,res) => {
+    
+}
+
 module.exports = {
     postRegister:postRegister,
     postLogin:postLogin
