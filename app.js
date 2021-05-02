@@ -9,6 +9,8 @@ const app = express();
 const web = require('./routes/web/index')
 const user = require('./routes/api/user.route')
 
+const admin = require('./routes/web/admin/index')
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -21,11 +23,14 @@ app.set('view engine', 'ejs')
 //api 
 
 app.use('/api/',user)
+//admin
+app.use('/admin/',admin)
 
 //send route
 app.use('/', web)
 //set path 404
 app.get('*', (req, res) => {res.render('web/404-page')});
+
 
 
 
