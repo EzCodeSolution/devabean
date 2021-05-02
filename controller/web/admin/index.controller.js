@@ -1,9 +1,17 @@
+const models = require('../../../models')
+
+async function getImageProduct(productId){
+    const image = await models.productimage.find({Where:{ProductId:this.productId,IsActive:true}})
+    return image
+}
+
 const getIndex = (req,res) => {
     res.render('admin/index')
 }
 
-const getManageProduct = (req,res) =>{
-    res.render('admin/manageproduct')
+const getManageProduct = async(req,res) =>{
+    const data = await models.product.findAll();
+    res.render('admin/manageproduct',{data:data})
 }
 
 const getOrderPage = (req,res) => {
@@ -29,6 +37,12 @@ const getUserconfig = (req,res) => {
 const getAdmiconfig = (req,res) =>{
     res.render('admin/adminconfig')
 }
+
+const getlogin = (req,res) => {
+    res.render('admin/login')
+}
+
+
 module.exports = {
     getIndex:getIndex,
     getManageProduct:getManageProduct,
@@ -37,5 +51,6 @@ module.exports = {
     getHistory : getHistory,
     getPromotion : getPromotion,
     getUserconfig : getUserconfig,
-    getAdmiconfig : getAdmiconfig
+    getAdmiconfig : getAdmiconfig,
+    getlogin : getlogin
 }

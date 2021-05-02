@@ -11,5 +11,6 @@ router.get('/history',adminController.getHistory)
 router.get('/promotion',adminController.getPromotion)
 router.get('/userconfig',adminController.getUserconfig)
 router.get('/adminconfig',adminController.getAdmiconfig)
+router.get('/login',adminController.getlogin)
 
 module.exports = router

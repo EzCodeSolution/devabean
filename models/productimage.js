@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class BandedToken extends Model {
+  class ProductImage extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,11 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  BandedToken.init({
-    token: DataTypes.STRING
+  ProductImage.init({
+    ProductId: DataTypes.INTEGER,
+    Image: DataTypes.STRING,
+    Description: DataTypes.STRING,
+    IsActive: DataTypes.BOOLEAN,
+    Type: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'BandedToken',
+    modelName: 'ProductImage',
   });
-  return BandedToken;
+  return ProductImage;
 };

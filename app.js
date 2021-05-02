@@ -10,6 +10,7 @@ const web = require('./routes/web/index')
 const user = require('./routes/api/user.route')
 
 const admin = require('./routes/web/admin/index')
+const apiadmin = require('./routes/api/admin/auth.route')
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -25,6 +26,7 @@ app.set('view engine', 'ejs')
 app.use('/api/',user)
 //admin
 app.use('/admin/',admin)
+app.use('/api/admin/',apiadmin)
 
 //send route
 app.use('/', web)
