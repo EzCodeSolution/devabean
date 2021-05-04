@@ -1,19 +1,19 @@
-const jwt = require('jsonwebtoken');
+const model = require('../models') 
 
-function checkAuth(req,res,next){
-    try{
-        const token = req.headers.authorization.split(" ")[1] //Bearer @#$klfdsljafoi4242@34jasd
-        const decodedToken = jwt.verify(token,"adminallowyouplayheare");
-        req.userData = decodedToken;
-        next();
-    }catch(e){
-        return res.status(401).json({
-            message:"กรุณาเข้าสู่ระบบ",
-            error:e
-        })
+async function auth(req, res, next) {
+    const user = await model.Account.findByPk(req.user.id)
+
+    console.log(user.Atype)
+    if(req.isAuthenticated()) {
+        if(user.Atype < 3){
+            req.logout()
+            await req.flash('message', "มีบางอย่างผิดพลาด")
+            return res.redirect('/admin/login')
+        }
+        console.log(req.user)
+        return next()
     }
+    return res.redirect('/admin/login')
 }
 
-module.exports = {
-    checkAuth :checkAuth
-}
+module.exports = auth

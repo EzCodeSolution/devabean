@@ -1,35 +1,56 @@
 const express = require("express");
 const path = require("path")
 const bodyParser = require('body-parser')
-
-
+const {flash} = require('express-flash-message');
+const session = require('express-session');
+const passport = require('passport')
 const app = express();
+
 
 //include route 
 const web = require('./routes/web/index')
-const user = require('./routes/api/user.route')
-
 const admin = require('./routes/web/admin/index')
-const apiadmin = require('./routes/api/admin/auth.route')
-
+const adminApi = require('./routes/web/admin/adminApi')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.use(
+    session({
+        secret: 'godnotallow',
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+            },
+        })
+    );
+app.use(flash({ sessionKeyName: 'flashMessage' }));
+// Passport Config
+const passportInit = require('./config/passport')
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use((req,res,next) => {
+    res.locals.session = req.session
+    res.locals.user = req.user
+    next()
+})
 
 //set view
 app.use(express.static("view"))
 app.set('views',path.join(__dirname, '/view/'))
 app.set('view engine', 'ejs')
 
-//api 
-
-app.use('/api/',user)
 //admin
-app.use('/admin/',admin)
-app.use('/api/admin/',apiadmin)
+app.use('/admin',admin) 
+app.use('/api/admin',adminApi)
 
-//send route
+//web
 app.use('/', web)
+
+
 //set path 404
 app.get('*', (req, res) => {res.render('web/404-page')});
 

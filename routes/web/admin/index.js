@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const adminController = require('../../../controller/web/admin/index.controller')
-const route = require('../../api/user.route')
+const adminAuth = require('../../../middleware/checkadmin-auth')
 
-router.get("/",adminController.getIndex)
+router.get("/",adminAuth,adminController.getIndex)
 router.get('/manageproduct',adminController.getManageProduct)
 router.get('/order',adminController.getOrderPage)
 router.get('/configweb',adminController.getConfigWeb)

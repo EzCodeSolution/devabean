@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const WebController = require('../../controller/web/index')
+const WebController = require('../../controller/web/index.controller')
+
 
 router.get("/",WebController.getHome);
 router.get("/cart",WebController.getCart);

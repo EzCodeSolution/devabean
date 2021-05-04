@@ -1,11 +1,13 @@
 const models = require('../../../models')
+const passport = require('passport')
+
 
 async function getImageProduct(productId){
-    const image = await models.productimage.find({Where:{ProductId:this.productId,IsActive:true}})
+    const image = await models.productimage.find({where:{ProductId:this.productId,IsActive:true}})
     return image
 }
 
-const getIndex = (req,res) => {
+const getIndex = (req,res) => { 
     res.render('admin/index')
 }
 
@@ -38,8 +40,10 @@ const getAdmiconfig = (req,res) =>{
     res.render('admin/adminconfig')
 }
 
-const getlogin = (req,res) => {
-    res.render('admin/login')
+const getlogin = async(req,res) => {
+    req.logout()
+    const messages = await req.consumeFlash('message');
+    res.render('admin/login',{message:messages,success:true})
 }
 
 
