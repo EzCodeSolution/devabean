@@ -7,8 +7,9 @@ async function getImageProduct(productId){
     return image
 }
 
-const getIndex = (req,res) => { 
-    res.render('admin/index')
+const getIndex = async(req,res) => { 
+    const messages = await req.consumeFlash('info');
+    res.render('admin/index',{messages:messages})
 }
 
 const getManageProduct = async(req,res) =>{
@@ -46,6 +47,11 @@ const getlogin = async(req,res) => {
     res.render('admin/login',{message:messages,success:true})
 }
 
+const getlogout = async(req,res) => {
+    req.logout();
+    res.redirect("/admin/login")
+}
+
 
 module.exports = {
     getIndex:getIndex,
@@ -56,5 +62,6 @@ module.exports = {
     getPromotion : getPromotion,
     getUserconfig : getUserconfig,
     getAdmiconfig : getAdmiconfig,
-    getlogin : getlogin
+    getlogin : getlogin,
+    getlogout : getlogout
 }

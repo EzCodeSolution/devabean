@@ -24,11 +24,12 @@ const postLogin = async(req,res,next) => {
             req.flash('message',info.message)
             return res.redirect('/admin/login');
         }
-        req.logIn(user,(err)=>{
+        req.logIn(user,async(err)=>{
             if(err){
                 return next(err)
             }
             log.success("User has SignIn")
+            await req.flash('info', "เข้าสู่ระบบสำเร็จ")
             return res.redirect('/admin/')
         })
         
@@ -42,11 +43,7 @@ const postLogin = async(req,res,next) => {
     // })
 }
 
-const postLogout = async(req,res,next) => {
-    req.logout()
-    log.success("User has SignOut")
-    return res.redirect('/admin/login')  
-}
+
 
 module.exports = {
     postLogin : postLogin
