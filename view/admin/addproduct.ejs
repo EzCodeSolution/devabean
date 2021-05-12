@@ -16,41 +16,43 @@
                         <div class="row" style="background-color:whitesmoke; padding:30px;" >
                             <div class="container">
                                 <h3 style="padding-bottom: 20px;">เพิ่มสินค้า</h3>
-                                <form>
+                                <form method="post" action="/admin/addproduct" enctype="multipart/form-data" >
                                     <div class="form-group">
-                                      <label for="exampleInputEmail1">ชื่อสินค้า :</label>
-                                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                      <label for="Name">ชื่อสินค้า :</label>
+                                      <input type="text" class="form-control" id="Name" name="Name" placeholder="ชื่อสินค้า">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">ชื่อรอง :</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <label for="SubName">ชื่อรอง :</label>
+										<input type="text" class="form-control" id="SubName" name="SubName" placeholder="ชื่อรอง">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">ราคาต่อหน่วย :</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <label for="Price">ราคาต่อหน่วย :</label>
+										<input type="number" class="form-control" id="Price" name="Price" placeholder="ราคาต่อหน่วย">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">คำอธิบายสินค้า :</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <label for="Description">คำอธิบายสินค้า :</label>
+										<textarea class="form-control" id="Description" name="Description" placeholder="คำอธิบายสินค้า" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">รหัสสินค้า :</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <label for="ProductCode">รหัสสินค้า :</label>
+										<input type="text" class="form-control" id="ProductCode" name="ProductCode" placeholder="รหัสสินค้า">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">หมวดหมู่ :</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">tag :</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                    </div>
+										<select class="form-control" id="Category" name="Category">
+											<option>-เลือกหมวดสินค้า-</option>
+											<option>เมล็ดกาแฟ</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										  </select>
+									</div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">รูปภาพสินค้า :</label>
-                                        <input type="file" id="files" name="files" class="form form-control" multiple><br/>
+                                        <input type="file" id="files" name="img" class="form form-control" multiple><br/>
                                         <div id="selectedFiles"></div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">บันทึก</button>
                                 </form>
                             </div>
                         </div>

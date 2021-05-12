@@ -3,6 +3,7 @@ const router = express.Router()
 const adminController = require('../../../controller/web/admin/index.controller')
 const adminAuth = require('../../../middleware/checkadmin-auth')
 const productController = require('../../../controller/web/admin/product.controller')
+const imageUploader = require('../../../helper/saveimage');
 
 router.get("/",adminAuth,adminController.getIndex)
 router.get('/manageproduct',adminController.getManageProduct)
@@ -17,6 +18,7 @@ router.get('/logout',adminController.getlogout)
 
 //product 
 router.get('/addproduct',productController.getaddproduct)
+router.post('/addproduct',imageUploader.upload.array('img', 12),productController.postaddproduct)
 
 
 module.exports = router

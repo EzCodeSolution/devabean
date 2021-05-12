@@ -1,19 +1,16 @@
 const express = require("express");
 const path = require("path")
-const bodyParser = require('body-parser')
 const {flash} = require('express-flash-message');
 const session = require('express-session');
 const passport = require('passport')
 const app = express();
-
-
+const multer = require('multer');
+var upload = multer();
 //include route 
 const web = require('./routes/web/index')
 const admin = require('./routes/web/admin/index')
 const adminApi = require('./routes/web/admin/adminApi')
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
 app.use(
     session({
@@ -27,7 +24,8 @@ app.use(
     );
 app.use(flash({ sessionKeyName: 'flashMessage' }));
 // Passport Config
-const passportInit = require('./config/passport')
+const passportInit = require('./config/passport');
+
 passportInit(passport)
 app.use(passport.initialize())
 app.use(passport.session())
@@ -37,6 +35,11 @@ app.use((req,res,next) => {
     res.locals.user = req.user
     next()
 })
+
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 
 //set view
 app.use(express.static("view"))
