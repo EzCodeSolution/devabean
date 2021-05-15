@@ -1,5 +1,7 @@
 const models = require('../../../models')
 const passport = require('passport')
+const queryHelper = require('../../../helper/query')
+
 
 
 async function getImageProduct(productId){
@@ -13,8 +15,8 @@ const getIndex = async(req,res) => {
 }
 
 const getManageProduct = async(req,res) =>{
-    const data = await models.product.findAll();
-    res.render('admin/manageproduct',{data:data})
+    var product = await queryHelper.getProduct();
+    res.render('admin/manageproduct',{product:product})
 }
 
 const getOrderPage = (req,res) => {

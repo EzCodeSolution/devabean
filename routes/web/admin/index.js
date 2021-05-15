@@ -19,6 +19,7 @@ router.get('/logout',adminController.getlogout)
 //product 
 router.get('/addproduct',productController.getaddproduct)
 router.post('/addproduct',imageUploader.upload.array('img', 12),productController.postaddproduct)
-
+//product type
+router.post('/createproductType',productController.postNewType)
 
 module.exports = router

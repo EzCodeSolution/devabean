@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express") , moment = require('moment');;
 const path = require("path")
 const {flash} = require('express-flash-message');
 const session = require('express-session');
@@ -45,6 +45,7 @@ app.use(bodyParser.json())
 app.use(express.static("view"))
 app.set('views',path.join(__dirname, '/view/'))
 app.set('view engine', 'ejs')
+app.locals.moment = require('moment');
 
 //admin
 app.use('/admin',admin) 
