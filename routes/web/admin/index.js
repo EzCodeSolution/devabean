@@ -4,6 +4,8 @@ const adminController = require('../../../controller/web/admin/index.controller'
 const adminAuth = require('../../../middleware/checkadmin-auth')
 const productController = require('../../../controller/web/admin/product.controller')
 const imageUploader = require('../../../helper/saveimage');
+const stockController = require('../../../controller/web/admin/stock.controller')
+
 
 router.get("/",adminAuth,adminController.getIndex)
 router.get('/manageproduct',adminController.getManageProduct)
@@ -21,5 +23,11 @@ router.get('/addproduct',productController.getaddproduct)
 router.post('/addproduct',imageUploader.upload.array('img', 12),productController.postaddproduct)
 //product type
 router.post('/createproductType',productController.postNewType)
+
+
+//stock 
+router.post('/poststock',stockController.postNewStock)
+router.post('/stock',adminController.getStock)
+
 
 module.exports = router

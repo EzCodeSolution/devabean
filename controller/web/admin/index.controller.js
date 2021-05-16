@@ -54,6 +54,26 @@ const getlogout = async(req,res) => {
     res.redirect("/admin/login")
 }
 
+const getStock = async(req,res) => {
+    var data = req.body;
+    var id = parseInt(data.id);
+    var stock = await queryHelper.getStockByProductId(id);
+    var product = await queryHelper.getProductById(id);
+    var ss
+    if(stock == null){
+        ss = {
+            id : '',
+            Count :0,
+        }
+    }else{
+        ss = {
+            id : stock.id,
+            Count : stock.Count,
+        }
+    }
+    res.render('admin/stock',{stock:ss,product:product,error: req.flash('error')})
+}
+
 
 module.exports = {
     getIndex:getIndex,
@@ -65,5 +85,6 @@ module.exports = {
     getUserconfig : getUserconfig,
     getAdmiconfig : getAdmiconfig,
     getlogin : getlogin,
-    getlogout : getlogout
+    getlogout : getlogout,
+    getStock : getStock
 }

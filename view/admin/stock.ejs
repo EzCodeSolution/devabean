@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<style>
+	#selectedFiles img {
+		max-width: 200px;
+		max-height: 200px;
+		float: left;
+		margin-bottom:10px;
+	}
+</style>
+     <!-- PAGE CONTAINER-->
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row" style="background-color:whitesmoke; padding:30px;" >
+                            <div class="container">
+                                <h3 style="padding-bottom: 20px;">จัดการ Stock</h3>
+                                <form method="post" action="/admin/poststock" >
+                                    <div class="form-group">
+                                    	<label for="Name">ชื่อสินค้า :</label>
+                                    	<input type="text" readonly="readonly"  class="form-control" id="Name" name="Name" value="<%= product.Name %>" placeholder="ชื่อสินค้า">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Price">จำนวน :</label>
+										<input type="number" class="form-control" id="Stock" name="Stock" value="<%= stock.Count %>" placeholder="จำนวนสินค้า">
+                                    </div>
+                                    <input type="hidden" name="stockid" value="<%= stock.id %>">
+                                    <input type="hidden" name="productid" value="<%= product.id %>">
+                                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<%- include('partials/footer') %>

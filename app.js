@@ -43,9 +43,10 @@ app.use(bodyParser.json())
 
 //set view
 app.use(express.static("view"))
-app.set('views',path.join(__dirname, '/view/'))
+app.set('views',path.join(__dirname, '/view'))
 app.set('view engine', 'ejs')
 app.locals.moment = require('moment');
+app.use("/view", express.static(__dirname + "/views"));
 
 //admin
 app.use('/admin',admin) 

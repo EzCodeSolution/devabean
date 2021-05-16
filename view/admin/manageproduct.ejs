@@ -75,9 +75,12 @@
                                                 <td> <%=   moment(x.updatedAt).format('MMMM Do YYYY, h:mm:ss')  %></td>
                                                 <td>
                                                     <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                            <i class="zmdi zmdi-mail-send"></i>
-                                                        </button>
+                                                        <form action="/admin/stock" method="POST">
+                                                            <input type="hidden" value="<%= x.id %>"  name="id">
+                                                            <button type="submit" class="item" title="จัดการ Stock" >
+                                                                <i class="zmdi zmdi-mail-send"></i>
+                                                            </button>
+                                                        </form>
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </button>
