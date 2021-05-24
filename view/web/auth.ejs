@@ -1,0 +1,104 @@
+<%- include('partials/header') %>
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row breadcrumb_box  align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center text-sm-left">
+                        <h2 class="breadcrumb-title">Account</h2>
+                    </div>
+                    <div class="col-lg-6  col-md-6 col-sm-6">
+                        <!-- breadcrumb-list start -->
+                        <ul class="breadcrumb-list text-center text-sm-right">
+                            <li class="breadcrumb-item"> <a href="/">Home</a></li>
+                        </ul>
+                        <!-- breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+     <!-- Nav tabs -->
+ 
+    <% var i = messages.code ; var login = ""; var register ="" ;%>
+    <% if(i == "register"){ login ="";register ="active" }else{login ="active";register ="" } %>
+
+    <ul class="nav nav-tabs"  style="padding:20px">
+        <li class="nav-item">
+            <a class="nav-link <%= login %>" data-toggle="tab" href="#home">เข้าสู่ระบบ</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link <%= register %>" data-toggle="tab" href="#menu1">สมัครเข้าใช้งาน</a>
+        </li>
+    </ul>
+
+
+  <!-- Tab panes -->
+  <div class="tab-content" style="padding:20px">
+    <div id="home" class="container tab-pane <%= login %>"><br>
+  
+      <form action="#" class="account-form-box">
+        <div class="single-input" style="padding: 5px;">
+            <input type="text" name="Email" class="form form-control" style="color: black;" placeholder="อีเมลล์">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="password" name="Password" class="form form-control" style="color: black;"  placeholder="รหัสผ่าน">
+        </div>
+        <div class="button-box mt-25">
+            <button class="btn btn--full btn--black">เข้าสู่ระบบ</button>
+        </div>
+        <div class="button-box mt-25">
+            <a href="#" class="btn btn--full btn--blue form form-control"><i class="social social_facebook" style="margin-right: 4px;"></i>Login with Facebook</a>
+        </div>
+        <div class="button-box mt-25">
+            <a href="#" class="btn btn--full btn--red"><i class="social social_googleplus"style="margin-right: 4px;"></i>Login with Google</a>
+        </div>
+    </form>
+    </div>
+    <div id="menu1" class="container tab-pane <%= register %> "><br>
+        <% if(messages.error) { %>
+            <span class="text-red-500 text-sm"><%= messages.error %></span>
+        <% } %>
+    <form action="/register" method="POST" >
+        <div class="single-input" style="padding: 5px;">
+            <input type="text" name="Username" value="<%= messages.data.DisplayName %>" class="form form-control"style="color: black;" placeholder="ชื่อที่แสดง">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="text" name="Email" class="form form-control"style="color: black;" placeholder="อีเมลล์">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="password" name="Password" class="form form-control"style="color: black;" placeholder="รหัสผ่าน">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="password" name="ConfirmPassword" class="form form-control"style="color: black;" placeholder="ยืนยันรหัสผ่าน">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="text" name="FirstName" placeholder="ชื่อจริง" class="form form-control"style="color: black;">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="text" name="LastName" placeholder="นามสกุล" class="form form-control"style="color: black;"> 
+        </div>
+        <div class="single-input"style="padding: 5px;">
+            <input type="text" name="Tel" placeholder="เบอร์โทร" class="form form-control" style="color: black;">
+        </div>
+        <div class="single-input" style="padding: 5px;">
+            <input type="text" name="Line" placeholder="IdLine" class="form form-control" style="color: black;">
+        </div>
+      
+        <div class="button-box mt-25">
+            <button type="submit" class="btn btn--full btn--black">สมัครใช้งาน</button>
+        </div>
+        <div class="button-box mt-25">
+            <a href="#" class="btn btn--full btn--blue"><i class="social social_facebook" style="margin-right: 4px;"></i>Login with Facebook</a>
+        </div>
+        <div class="button-box mt-25">
+            <a href="#" class="btn btn--full btn--red"><i class="social social_googleplus"style="margin-right: 4px;"></i>Login with Google</a>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

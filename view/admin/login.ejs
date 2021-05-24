@@ -47,9 +47,6 @@
                         </div>
                         <div class="login-form">
                             <form action="/api/admin/auth/login" method="POST">
-                                <% if(message.length > 0) { %>
-                                <div class="text-danger text-center"><div><%= message %></div></div>
-                                <% } %>
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input class="au-input au-input--full" type="email" name="email" id="email" placeholder="Email">

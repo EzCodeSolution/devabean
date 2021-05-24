@@ -10,8 +10,7 @@ async function getImageProduct(productId){
 }
 
 const getIndex = async(req,res) => { 
-    const messages = await req.consumeFlash('info');
-    res.render('admin/index',{messages:messages})
+    res.render('admin/index')
 }
 
 const getManageProduct = async(req,res) =>{
@@ -45,8 +44,7 @@ const getAdmiconfig = (req,res) =>{
 
 const getlogin = async(req,res) => {
     req.logout()
-    const messages = await req.consumeFlash('message');
-    res.render('admin/login',{message:messages,success:true})
+    res.render('admin/login')
 }
 
 const getlogout = async(req,res) => {

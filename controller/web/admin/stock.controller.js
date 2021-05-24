@@ -3,14 +3,8 @@ const log = require('log-beautify')
 const queryHelper = require('../../../helper/query')
 const codeStatus = require('../../../helper/StatusProduct.json')
 
-
 const postNewStock = async(req,res) => {
-
-
     var data = req.body;
-    if(data.Stock == ''){
-        console.log('work')
-    }
     var ctext = false;
     if(data.stockid == ''){
         ctext = true

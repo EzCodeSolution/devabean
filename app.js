@@ -1,6 +1,6 @@
 const express = require("express") , moment = require('moment');;
 const path = require("path")
-const {flash} = require('express-flash-message');
+const flash = require('express-flash')
 const session = require('express-session');
 const passport = require('passport')
 const app = express();
@@ -22,7 +22,8 @@ app.use(
             },
         })
     );
-app.use(flash({ sessionKeyName: 'flashMessage' }));
+app.use(flash())
+
 // Passport Config
 const passportInit = require('./config/passport');
 

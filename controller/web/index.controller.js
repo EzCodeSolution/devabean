@@ -1,10 +1,29 @@
+const model = require('../../models')
+
 const getHome = (req,res) => {
     res.render("web/index")
 }
 
-const getProduct = (req,res) => {
-    res.render("web/product")
+const getProduct = async(req,res) => {
+    var product = await model.product.findAll();
+    var data = await matchImgProduct(product)
+    res.render("web/product",{data:data})
 }
+
+async function matchImgProduct (product) {
+    var data = []
+    for(var i = 0;i<product.length;i++){
+        var img = await model.ProductImage.findOne({where:{ProductId:product[i].id}})
+        console.log(img)
+        var a = {
+            product : product[i],
+            img : img
+        }
+        data.push(a)
+    }
+    return data 
+}
+
 
 const getViewproduct = (req,res) => {
     res.render("web/viewproduct")
@@ -26,6 +45,10 @@ const getViewblog = (req,res) => {
     res.render("web/viewblog")
 }
 
+const getLogin = (req,res) =>{
+    res.render('web/auth')
+}
+
 
 module.exports = {
     getHome:getHome,
@@ -34,5 +57,6 @@ module.exports = {
     getCart:getCart,
     getWishlist:getWishlist,
     getViewproduct:getViewproduct,
-    getProduct:getProduct
+    getProduct:getProduct,
+    getLogin:getLogin
 }
